@@ -6,14 +6,14 @@ by anyone who chooses to read it, and not just the designers of the site.
 
 ###Site Hierarchy
 
-**/**
+####/ ( index )
 
 Our super sexy front-page!  This is the first thing most people will see, so
 it should be pretty and filled with concise information.  Additionally it
 should also include a collection of links to different parts of the site, 
 specifically /find and /stations.
 
-**/find**
+####/find
 
 This page is a collection of links to other pages on the site.  This is a good 
 launching point for kind of a site-map of sorts.  This page will include links
@@ -24,7 +24,7 @@ to:
  - Find Audio Content
  - etc.
 
-**/stations**
+####/stations
 
 This is a big-o-list of all of the stations within the system.  This is 
 organized by state.  Each station has the town/city that it resides in, and
@@ -32,9 +32,9 @@ then the call sign ( eg: Rochester - WXXI ).  This is searchable for key
 words such as city name, or focus area ( local government, environmental, 
 expertise ( think 'we do a lot of FOIL/FOIA work ), content types, etc.
 
-**/station/<station>**
+####/station/<station>
 
-*example: /station/wxxi*
+*example: **/station/wxxi***
 
 This is the individual station's website.  This is the landing page for all
 things about a specific station.  Here is a collection of information about
@@ -55,7 +55,7 @@ defined as a group of like items.  An example of a collection would be
 "podcasts".  This is a list of all podcasts that are available from this
 station.  Another ex
 
-**/people**
+####/people
 
 This is a list of people within the public media space.  This can be organized
 in a number of different way: by specialty, station, geographic region, by
@@ -64,15 +64,15 @@ content generation type ( audio, written, blog, video, etc. ), by need ( see
 /stations, where you can search for people based on their location, key words
 in their bio, their expertise, etc.
 
-**/listen**
+####/listen
 
 This is the landing page for all things audio.  Here is a collection of all of
 the different audio recordings across all stations.  Here you can search for
 things by tag, type, category, region, etc.
 
-**/listen/<recording>**
+####/listen/<recording>
 
-*example: /listen/12345*
+*example: **/listen/12345***
 
 This is the specific page for an audio recording.  Here information about the 
 recording can be found.  Additionally, here is where crowd-sourced 
@@ -80,7 +80,7 @@ transcription and tagging can happen.  This is a great place for users to get
 involved and bring value to their local ( and non-local! ) public media
 stations.
 
-**/learn**
+####/learn
 
 Here is a collection of how-to write-ups.  These write-ups are intended to be
 written by members of the public media space *for* members of the public media
@@ -89,9 +89,9 @@ all of the information needed to successfully transfer the knowledge from one
 person/station to another.  You will be able to perform search here similar
 to the /station page.
 
-**/learn/<topic**
+####/learn/<topic
 
-*example: /learn/4568*
+*example: **/learn/4568***
 
 This is a specific topic within the learning section of the site.  Thing of 
 this as a how-to for anything public-media.  These can be collections from how
@@ -99,7 +99,7 @@ to ask for help from your community, to how to make a pivot-table in Excel.
 These are similar to blog posts, however have a very specific focus on a topic
 that is core to making public media better.
 
-**/help**
+####/help
 
 It is common in all industries that individuals need help on a project, but do
 not know where to look to get that help.  The /help section allows people from 
@@ -115,7 +115,7 @@ They can post the answer in a forum response-style, or they can ( if applicable
 although it is the hope of the media-public team that all answers make their
 way back onto the website! ). 
 
-**/help/<request>**
+####/help/<request>
 
 This is where you would view, and respond ( or ask for clarification ) a
 request for help.  Here the request is outlined by the poster, and any 
@@ -124,13 +124,13 @@ users can view this request/files and post questions/comments as well as
 any solutions they feel are worth while.  Posters will be able to mark 
 requests as 'solved' or 'open' as they see fit.
 
-**/blog**
+####/blog
 
 This is a place where the media-public operators can post information about
 the website, as well as have guest bloggers come to talk about some of the
 methods they use to do their job well.
 
-**/about**
+####/about
 
 A standard about page talking about the team, the website, and the mission.
 
