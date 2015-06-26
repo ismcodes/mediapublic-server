@@ -4,6 +4,14 @@ The objective of this document is to assist in understanding the layout and
 flow of the media-public website.  This document is intended to be understood
 by anyone who chooses to read it, and not just the designers of the site.
 
+###Site Objective
+
+The MediaPublic site strives to produce a single spot where anyone who is
+involved in, is passionate about, or uses public media can come to enjoy all
+of the work being done in the public space.  Collaboration is hugely
+successful in other spaces/industries, and it is the MediaPublic team's
+believe that it should be successful in the public media space as well.
+
 ###Site Hierarchy
 
 ####/ ( index )
@@ -32,7 +40,7 @@ then the call sign ( eg: Rochester - WXXI ).  This is searchable for key
 words such as city name, or focus area ( local government, environmental, 
 expertise ( think 'we do a lot of FOIL/FOIA work ), content types, etc.
 
-####/station/<station>
+####/station/{station}
 
 *example: **/station/wxxi***
 
@@ -64,13 +72,22 @@ content generation type ( audio, written, blog, video, etc. ), by need ( see
 /stations, where you can search for people based on their location, key words
 in their bio, their expertise, etc.
 
+####/person/{person}
+
+*example: **/person/12345**
+
+This is the individuals page.  Thing of this almost as a mini linked-in
+profile page, where you can see what content is linked to them, and what 
+they are currently working on.  There contact information, position, and
+station are all listed here.  You can also send them a message.
+
 ####/listen
 
 This is the landing page for all things audio.  Here is a collection of all of
 the different audio recordings across all stations.  Here you can search for
 things by tag, type, category, region, etc.
 
-####/listen/<recording>
+####/listen/{recording}
 
 *example: **/listen/12345***
 
@@ -89,7 +106,7 @@ all of the information needed to successfully transfer the knowledge from one
 person/station to another.  You will be able to perform search here similar
 to the /station page.
 
-####/learn/<topic
+####/learn/{topic}
 
 *example: **/learn/4568***
 
@@ -115,7 +132,7 @@ They can post the answer in a forum response-style, or they can ( if applicable
 although it is the hope of the media-public team that all answers make their
 way back onto the website! ). 
 
-####/help/<request>
+####/help/{request}
 
 This is where you would view, and respond ( or ask for clarification ) a
 request for help.  Here the request is outlined by the poster, and any 
@@ -129,6 +146,10 @@ requests as 'solved' or 'open' as they see fit.
 This is a place where the media-public operators can post information about
 the website, as well as have guest bloggers come to talk about some of the
 methods they use to do their job well.
+
+####/blog/{entry}
+
+This is a single blog entry.  It would include a place for commenting.
 
 ####/about
 
