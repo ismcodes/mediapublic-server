@@ -10,7 +10,7 @@ The MediaPublic site strives to produce a single spot where anyone who is
 involved in, is passionate about, or uses public media can come to enjoy all
 of the work being done in the public space.  Collaboration is hugely
 successful in other spaces/industries, and it is the MediaPublic team's
-believe that it should be successful in the public media space as well.
+belief that it should be successful in the public media space as well.
 
 ###Site Hierarchy
 
