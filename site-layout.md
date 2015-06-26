@@ -18,14 +18,13 @@ belief that it should be successful in the public media space as well.
 
 Our super sexy front-page!  This is the first thing most people will see, so
 it should be pretty and filled with concise information.  Additionally it
-should also include a collection of links to different parts of the site, 
+should include a collection of links to different parts of the site, 
 specifically /find and /stations.
 
 ####/find
 
-This page is a collection of links to other pages on the site.  This is a good 
-launching point for kind of a site-map of sorts.  This page will include links
-to:
+This page is a collection of links to other pages on the site.  This is a
+good place to have a site-map live.  This page will include links to:
 
  - Find a Person
  - Find a Station
@@ -38,7 +37,7 @@ This is a big-o-list of all of the stations within the system.  This is
 organized by state.  Each station has the town/city that it resides in, and
 then the call sign ( eg: Rochester - WXXI ).  This is searchable for key
 words such as city name, or focus area ( local government, environmental, 
-expertise ( think 'we do a lot of FOIL/FOIA work ), content types, etc.
+expertise ( think "we do a lot of FOIL/FOIA work" ), content types, etc.
 
 ####/station/{station}
 
@@ -61,12 +60,12 @@ local government ).
 The last part of this page is the list of collections.  A collection is
 defined as a group of like items.  An example of a collection would be 
 "podcasts".  This is a list of all podcasts that are available from this
-station.  Another ex
+station.  Another example could be written pieces or blog posts.
 
 ####/people
 
 This is a list of people within the public media space.  This can be organized
-in a number of different way: by specialty, station, geographic region, by
+in a number of different ways: by specialty, station, geographic region, by
 content generation type ( audio, written, blog, video, etc. ), by need ( see
 /help for more details on this ), etc.  This will be searchable similarly to
 /stations, where you can search for people based on their location, key words
@@ -76,9 +75,9 @@ in their bio, their expertise, etc.
 
 *example: **/person/12345**
 
-This is the individuals page.  Thing of this almost as a mini linked-in
+This is the individual's page.  Think of this almost as a mini linked-in
 profile page, where you can see what content is linked to them, and what 
-they are currently working on.  There contact information, position, and
+they are currently working on.  Their contact information, position, and
 station are all listed here.  You can also send them a message.
 
 ####/listen
@@ -110,7 +109,7 @@ to the /station page.
 
 *example: **/learn/4568***
 
-This is a specific topic within the learning section of the site.  Thing of 
+This is a specific topic within the learning section of the site.  Think of 
 this as a how-to for anything public-media.  These can be collections from how
 to ask for help from your community, to how to make a pivot-table in Excel.
 These are similar to blog posts, however have a very specific focus on a topic
@@ -121,14 +120,14 @@ that is core to making public media better.
 It is common in all industries that individuals need help on a project, but do
 not know where to look to get that help.  The /help section allows people from 
 stations all across the country to post requests for help on projects and/or 
-assignments.  This could be as simple as 'How should I word this FOIL
-request?', or as complicated as 'I need help converting 10,000 PDF's of scanned
-documents to searchable text'.  Here is on open 'board' where people from all
-over the country can come together to ask for help.
+assignments.  This could be as simple as "How should I word this FOIL
+request?", or as complicated as "I need help converting 10,000 PDF's of scanned
+documents to searchable text".  Here is an open "message board" where people
+from all over the country can come together to ask for help.
 
 Additionally, any user ( from public media or not ) can post to lend a hand.
 They can post the answer in a forum response-style, or they can ( if applicable
-) take the conversation off of the website, and discuss in that manor ( 
+) take the conversation off of the website, and discuss in that manner ( 
 although it is the hope of the media-public team that all answers make their
 way back onto the website! ). 
 
@@ -138,8 +137,8 @@ This is where you would view, and respond ( or ask for clarification ) a
 request for help.  Here the request is outlined by the poster, and any 
 additional files that are needed are available for viewing/download. Other
 users can view this request/files and post questions/comments as well as
-any solutions they feel are worth while.  Posters will be able to mark 
-requests as 'solved' or 'open' as they see fit.
+any solutions they feel are worthwhile.  Posters will be able to mark 
+requests as "solved" or "open" as they see fit.
 
 ####/blog
 
