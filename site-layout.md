@@ -60,11 +60,12 @@ specifically /find and /stations.
 
 ####/organizations
 
-This is a big-o-list of all of the stations within the system.  This is 
+This is a big-ol'-list of all of the stations within the system.  This is 
 organized by state.  Each station has the town/city that it resides in, and
 then the call sign ( eg: Rochester - WXXI ).  This is searchable for key
 words such as city name, or focus area ( local government, environmental, 
 expertise ( think "we do a lot of FOIL/FOIA work" ), content types, etc.
+This page will eventually include a map of stations.
 
 
 
@@ -111,7 +112,7 @@ in their bio, their expertise, etc.
 This is the individual's page.  Think of this almost as a mini linked-in
 profile page, where you can see what content is linked to them, and what 
 they are currently working on.  Their contact information, position, and
-station are all listed here.  You can also send them a message.
+station are all listed here.
 
 
 
@@ -141,9 +142,9 @@ things by tag, type, category, region, etc.
 
 
 
-####/organization/recording/{id}
+####/organization/{name}/recording/{id}
 
-*example: **/organization/recording/12345***
+*example: **/organization/wxxi/recording/12345***
 
 This is the specific page for an audio recording.  Here information about the 
 recording can be found.  Additionally, here is where crowd-sourced 
@@ -155,13 +156,18 @@ stations.
 
 ####/find
 
-This page is a collection of links to other pages on the site.  This is a
-good place to have a site-map live.  This page will include links to:
+This page provides search functionality for the entire site. It will have a 
+widget that allows you to search in whatever category of things you are looking
+for. Such as:
 
  - Find a Person
  - Find a Station
  - Find Audio Content
  - etc.
+ 
+This might work something like Google search does, where you enter a query and
+the results window has tabs for kinds of content in response to your query.
+(Github search is also an example of this interaction).
 
 
 
@@ -179,12 +185,18 @@ Additionally, any user ( from public media or not ) can post to lend a hand.
 They can post the answer in a forum response-style, or they can ( if applicable
 ) take the conversation off of the website, and discuss in that manner ( 
 although it is the hope of the media-public team that all answers make their
-way back onto the website! ). 
+way back onto the website! ).
+
+This is where Midas will be integrated into the platform either as a landing page
+that links to the appropriate Midas instance, or as a direct client-side 
+integration.
 
 
 ####/listen
 
-A searchable list of all audio recordings across all stations.
+A searchable list of all audio recordings across all stations. This page will
+feature playlists, and other curated content, as well as explaining the listening
+functionality of the site.
 
 
 ####/learn
@@ -218,7 +230,7 @@ methods they use to do their job well.
 
 
 
-####/post/{entry}
+####/blog/{entry}
 
 This is a single blog entry.  It would include a place for commenting.
 
