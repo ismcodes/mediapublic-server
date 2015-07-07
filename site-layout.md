@@ -170,7 +170,7 @@ good place to have a site-map live.  This page will include links to:
 It is common in all industries that individuals need help on a project, but do
 not know where to look to get that help.  The /help section allows people from 
 stations all across the country to post requests for help on projects and/or 
-assignments.  This could be as simple as "How should I word this FOIL
+assignments.  This could be as simple as "How should I word this FOIA
 request?", or as complicated as "I need help converting 10,000 PDF's of scanned
 documents to searchable text".  Here is an open "message board" where people
 from all over the country can come together to ask for help.
