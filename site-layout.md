@@ -7,8 +7,8 @@ by anyone who chooses to read it, and not just the designers of the site.
 ###Site Objective
 
 The MediaPublic site strives to produce a single spot where anyone who is
-involved in, is passionate about, or uses public media can come to enjoy all
-of the work being done in the public space.  Collaboration is hugely
+involved in, is passionate about, or uses public media can find and share stories produced by public media, create resources to help people learn how to make public media, find information about the people working in public media, find code repositories associated with public media,
+and learn ways to become more deeply involved or help public media organizations.  Collaboration is hugely
 successful in other spaces/industries, and it is the MediaPublic team's
 belief that it should be successful in the public media space as well.
 
@@ -16,7 +16,7 @@ belief that it should be successful in the public media space as well.
 
 ####/ ( index )
 
-Our super sexy front-page!  This is the first thing most people will see, so
+The front page for Media Public.  This is the first thing most people will see, so
 it should be pretty and filled with concise information.  Additionally it
 should include a collection of links to different parts of the site, 
 specifically /find and /stations.
