@@ -14,14 +14,29 @@ belief that it should be successful in the public media space as well.
 
 ###Site Hierarchy
 
-/
-/organizations
-/organization/{name}
-/organization/{name}/people
-/organization/{name}/person/{id}
-/organization/{name}/tasks
+[/ (index)](site-layout.md#--index-)
+    - Site Index
+    
+[/organizations](site-layout.md#organizations)
+    - Searchable list of organizations ( stations )
+    
+[/organization/{name}](site-layout.md#organizationname)
+    - Organization ( station ) landing page
+    
+[/organization/{name}/people](site-layout.md#organizationnamepeople)
+    - Searchable list of station personal
+    
+[/organization/{name}/person/{id}](site-layout.md#organizationnamepersonperson)
+    - Person's personal landing page ( mini linkedin? )
+    
+[/organization/{name}/tasks](site-layout.md#organizationnametasks)
+    - Organization task list ( request for help list )
+    
 /organization/{name}/task/{id}
+    - Organization task landing page ( see: [MIDAS](https://midas-dev.18f.us/tasks/22) )
+    
 /organization/{name}/recordings
+
 /organization/{name}/recording/{id}
 /find
 /help
