@@ -14,36 +14,38 @@ belief that it should be successful in the public media space as well.
 
 ###Site Hierarchy
 
-[/ (index)](site-layout.md#--index-)
+- [/ (index)](site-layout.md#--index-)
     - Site Index
-    
-[/organizations](site-layout.md#organizations)
+- [/organizations](site-layout.md#organizations)
     - Searchable list of organizations ( stations )
-    
-[/organization/{name}](site-layout.md#organizationname)
+- [/organization/{name}](site-layout.md#organizationname)
     - Organization ( station ) landing page
-    
-[/organization/{name}/people](site-layout.md#organizationnamepeople)
+- [/organization/{name}/people](site-layout.md#organizationnamepeople)
     - Searchable list of station personal
-    
-[/organization/{name}/person/{id}](site-layout.md#organizationnamepersonperson)
+- [/organization/{name}/person/{id}](site-layout.md#organizationnamepersonperson)
     - Person's personal landing page ( mini linkedin? )
-    
-[/organization/{name}/tasks](site-layout.md#organizationnametasks)
+- [/organization/{name}/tasks](site-layout.md#organizationnametasks)
     - Organization task list ( request for help list )
-    
-/organization/{name}/task/{id}
+- /organization/{name}/task/{id}
     - Organization task landing page ( see: [MIDAS](https://midas-dev.18f.us/tasks/22) )
-    
-/organization/{name}/recordings
-
-/organization/{name}/recording/{id}
-/find
-/help
-/listen
-/learn
-/blog
-/about
+- /organization/{name}/recordings
+    - Organization searchable list of audio recordings
+- /organization/{name}/recording/{id}
+    - Organization recording landing page
+- /find
+    - Page with lots of links to different parts of the site
+- /help
+    - Searchable list of all tasks on the site
+- /listen
+    - Searchable list of all recordings on the site
+- /learn
+    - Searchable list of how-to's on the site
+- /blog
+    - Standard issue blog
+- /post/{id}
+    - Blog Post
+- /about
+    - About page
 
 ####/ ( index )
 
@@ -179,7 +181,7 @@ This is a place where the media-public operators can post information about
 the website, as well as have guest bloggers come to talk about some of the
 methods they use to do their job well.
 
-####/blog/{entry}
+####/post/{entry}
 
 This is a single blog entry.  It would include a place for commenting.
 
