@@ -97,15 +97,15 @@ users can view this request/files and post questions/comments as well as
 any solutions they feel are worthwhile.  Posters will be able to mark 
 requests as "solved" or "open" as they see fit.
 
-####/listen
+####/organization/{name}/recordings
 
 This is the landing page for all things audio.  Here is a collection of all of
 the different audio recordings across all stations.  Here you can search for
 things by tag, type, category, region, etc.
 
-####/listen/{recording}
+####/organization/recording/{id}
 
-*example: **/listen/12345***
+*example: **/organization/recording/12345***
 
 This is the specific page for an audio recording.  Here information about the 
 recording can be found.  Additionally, here is where crowd-sourced 
