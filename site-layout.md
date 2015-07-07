@@ -26,25 +26,27 @@ belief that it should be successful in the public media space as well.
     - Person's personal landing page ( mini linkedin? )
 - [/organization/{name}/tasks](site-layout.md#organizationnametasks)
     - Organization task list ( request for help list )
-- /organization/{name}/task/{id}
+- [/organization/{name}/task/{id}](site-layout.md#organizationnametaskid)
     - Organization task landing page ( see: [MIDAS](https://midas-dev.18f.us/tasks/22) )
-- /organization/{name}/recordings
+- [/organization/{name}/recordings](site-layout.md#organizationnamerecordings)
     - Organization searchable list of audio recordings
-- /organization/{name}/recording/{id}
+- [/organization/{name}/recording/{id}](site-layout.md#organizationrecordingid)
     - Organization recording landing page
-- /find
+- [/find](site-layout.md#find)
     - Page with lots of links to different parts of the site
-- /help
+- [/help](site-layout.md#help)
     - Searchable list of all tasks on the site
-- /listen
+- [/listen](site-layout.md#listen)
     - Searchable list of all recordings on the site
-- /learn
+- [/learn](site-layout.md#learntopic)
     - Searchable list of how-to's on the site
-- /blog
+- [/learn/{id}](site-layout.md#learnid)
+    - How-to landing page
+- [/blog](site-layout.md#blog)
     - Standard issue blog
-- /post/{id}
+- [/post/{id}](site-layout.md#postentry)
     - Blog Post
-- /about
+- [/about](site-layout.md#about)
     - About page
 
 ####/ ( index )
@@ -180,6 +182,10 @@ although it is the hope of the media-public team that all answers make their
 way back onto the website! ). 
 
 
+####/listen
+
+A searchable list of all audio recordings across all stations.
+
 
 ####/learn
 
@@ -192,7 +198,7 @@ to the /station page.
 
 
 
-####/learn/{topic}
+####/learn/{id}
 
 *example: **/learn/4568***
 
