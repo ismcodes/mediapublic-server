@@ -14,21 +14,21 @@ belief that it should be successful in the public media space as well.
 
 ###Site Hierarchy
 
-    /
-    /organizations
-    /organization/{name}
-    /organization/{name}/people
-    /organization/{name}/person/{id}
-    /organization/{name}/tasks
-    /organization/{name}/task/{id}
-    /organization/{name}/recordings
-    /organization/{name}/recording/{id}
-    /find
-    /help
-    /listen
-    /learn
-    /blog
-    /about
+/
+/organizations
+/organization/{name}
+/organization/{name}/people
+/organization/{name}/person/{id}
+/organization/{name}/tasks
+/organization/{name}/task/{id}
+/organization/{name}/recordings
+/organization/{name}/recording/{id}
+/find
+/help
+/listen
+/learn
+/blog
+/about
 
 ####/ ( index )
 
@@ -49,7 +49,7 @@ expertise ( think "we do a lot of FOIL/FOIA work" ), content types, etc.
 
 ####/organization/{name}
 
-*example: **/station/wxxi***
+*example: **/organization/wxxi***
 
 This is the individual station's website.  This is the landing page for all
 things about a specific station.  Here is a collection of information about
@@ -97,10 +97,6 @@ users can view this request/files and post questions/comments as well as
 any solutions they feel are worthwhile.  Posters will be able to mark 
 requests as "solved" or "open" as they see fit.
 
-
-
-
-
 ####/listen
 
 This is the landing page for all things audio.  Here is a collection of all of
@@ -142,7 +138,6 @@ They can post the answer in a forum response-style, or they can ( if applicable
 ) take the conversation off of the website, and discuss in that manner ( 
 although it is the hope of the media-public team that all answers make their
 way back onto the website! ). 
-
 
 ####/learn
 
