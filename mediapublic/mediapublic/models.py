@@ -59,15 +59,19 @@ class CreationMixin():
     def delete_by_id(cls, id):
         with transaction.manager:
             thing = cls.get_by_id(id)
-            DBSession.delete(thing)
+            if not thing is None:
+                DBSession.delete(thing)
             transaction.commit()
         return thing
 
     @classmethod
-    def update_by_id(cls, id, *args, **kargs):
+    def update_by_id(cls, id, **kwargs):
         with transaction.manager:
+             keys = set(cls.__dict__)
              thing = cls.get_by_id(id)
-             # TODO: magic
+             for k in kwargs:
+                 if k in keys:
+                     setattr(thing, k, kwargs[k])
              DBSession.add(thing)
              transaction.commit()
         return thing
