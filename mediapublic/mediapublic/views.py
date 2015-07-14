@@ -13,7 +13,9 @@ from .models import (
     People,
     Recordings,
     Howtos,
-    Blogs,
+    # Blogs,
+    Playlists,
+    playlist_items,
     )
 
 import datetime
@@ -80,7 +82,7 @@ def do_get_single(request, id, cls):
         resp = thing.to_dict()
         status = 200
     return resp, status
-    
+
 def do_put(request, id, cls):
 
     resp = {'error': 'Not Found'}
@@ -115,7 +117,7 @@ METHODS = {
 #def view_indecx(request):
 #
 #    return {}
-    
+
 ########### INDEX
 #@view_config(route_name='index', '/', )
 
@@ -209,7 +211,7 @@ def recording_categories(request):
         resp = {'error': 'Method Not Allowed'}
         request.response.status = 405
     return resp
-    
+
 # [GET,       PUT, DELETE] /recording_categories/:{id}
 @view_config(route_name='recording_category_by_id', renderer='json')
 def recording_category_by_id(request):
@@ -532,8 +534,8 @@ def howtos_comment_by_id(request):
         resp, status = METHODS[request.method](request, id, cls)
     request.response.status = status
     return resp
-    
-    
+
+
 
 ########### BLOGS
 
@@ -598,4 +600,52 @@ def blogs_comment_by_id(request):
     else:
         resp, status = METHODS[request.method](request, id, cls)
     request.response.status = status
+    return resp
+
+
+########### PLAYLISTS
+# I'm going to work with non-clever syntax for now and then move onto using do_post
+# [GET, POST]
+@view_config(route_name='station_playlists', renderer='templates/playlists/index.pt')
+def station_playlists(request):
+    resp = {}
+    if request.method == "GET":
+        all_playlists = Playlists.get_all() # TODO filter on station id
+    elif request.method == "POST":
+        # I want request.body, not matchdict. I think.
+        item_count = int(request.matchdict['item_count'])
+        if item_count > 0:
+            playlist_name = request.matchdict['playlist_name']
+            author_name = request.matchdict['playlist_author_name']
+            email = request.matchdict['playlist_author_email']
+            playlist = Playlists(name=playlist_name, author=author_name, author_email=email)
+            session.add(playlist)
+            for i in range(0, item_count):
+                form_item = request.matchdict['item_%d'%i]
+                # TODO
+                session.add(item)
+            all_playlists = Playlists.get_all()
+            resp = {
+                'playlists': all_playlists
+            }
+        else:
+            all_playlists = Playlists.get_all()
+            # don't declare at start because new playlist can be added
+            resp = {
+                'error': 'You don\'t have any items in the playlist.',
+                'playlists': all_playlists
+            }
+    else:
+        resp = {'error': 'Method Not Allowed'}
+        status = 405
+    return resp
+@view_config(route_name='new_station_playlist', renderer='templates/playlists/new.pt')
+def new_station_playlist(request):
+    # import datetime
+    # r = Recordings(title=str(len(Recordings.get_all())), url="google.com", recorded_datetime=datetime.datetime.now())
+    # DBSession.add(r)
+    # import transaction
+    # transaction.commit()
+    # testing purposes
+    resp = {'random_recording_set': Recordings.get_all()} # TODO filter on station id
     return resp

@@ -54,6 +54,13 @@ def main(global_config, **settings):
     config.add_route('organization_recordings_by_id', 'organizations/:{oid}/recordings/:{id}')
     config.add_route('organization_recordings_comments', 'organizations/:{oid}/recordings/:{rid}/comments')
     config.add_route('organization_recordings_comment_by_id', 'organizations/:{oid}/recordings/:{rid}/comments/:{id}')
+
+    # PLAYLISTS
+    config.add_route('station_playlists', '/station/{id}/playlists')
+    config.add_route('new_station_playlist', '/station/{id}/playlist/new')
+    config.add_route('station_playlist_listening', '/station/{id}/playlist/{playlistId}')
+    # might change url format later? still not 100% sure where I'm going with this
+
     
     # HOWTOS
     config.add_route('howtos', '/howtos')
