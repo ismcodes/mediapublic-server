@@ -2,6 +2,7 @@ from pyramid.response import Response
 from pyramid.view import view_config
 
 from sqlalchemy.exc import DBAPIError
+import transaction
 
 from .models import (
     DBSession,
@@ -15,7 +16,7 @@ from .models import (
     Howtos,
     # Blogs,
     Playlists,
-    playlist_items,
+    playlist_assignments,
     )
 
 import datetime
@@ -605,47 +606,105 @@ def blogs_comment_by_id(request):
 
 ########### PLAYLISTS
 # I'm going to work with non-clever syntax for now and then move onto using do_post
-# [GET, POST]
-@view_config(route_name='station_playlists', renderer='templates/playlists/index.pt')
+# [GET]
+@view_config(route_name='playlists', renderer='templates/playlists/index.pt')
 def station_playlists(request):
     resp = {}
     if request.method == "GET":
         all_playlists = Playlists.get_all() # TODO filter on station id
-    elif request.method == "POST":
-        # I want request.body, not matchdict. I think.
-        item_count = int(request.matchdict['item_count'])
-        if item_count > 0:
-            playlist_name = request.matchdict['playlist_name']
-            author_name = request.matchdict['playlist_author_name']
-            email = request.matchdict['playlist_author_email']
-            playlist = Playlists(name=playlist_name, author=author_name, author_email=email)
-            session.add(playlist)
-            for i in range(0, item_count):
-                form_item = request.matchdict['item_%d'%i]
-                # TODO
-                session.add(item)
-            all_playlists = Playlists.get_all()
-            resp = {
-                'playlists': all_playlists
-            }
-        else:
-            all_playlists = Playlists.get_all()
-            # don't declare at start because new playlist can be added
-            resp = {
-                'error': 'You don\'t have any items in the playlist.',
-                'playlists': all_playlists
-            }
+        resp = {'playlists': all_playlists}
     else:
         resp = {'error': 'Method Not Allowed'}
         status = 405
     return resp
-@view_config(route_name='new_station_playlist', renderer='templates/playlists/new.pt')
-def new_station_playlist(request):
-    # import datetime
-    # r = Recordings(title=str(len(Recordings.get_all())), url="google.com", recorded_datetime=datetime.datetime.now())
-    # DBSession.add(r)
-    # import transaction
-    # transaction.commit()
-    # testing purposes
-    resp = {'random_recording_set': Recordings.get_all()} # TODO filter on station id
+
+# [GET, POST]
+@view_config(route_name='user_playlists', renderer='templates/playlists/index.pt')
+def user_playlists(request):
+    person_id = int(request.matchdict['uid'])
+    user = People.get_by_id(person_id)
+    resp = {'error': 'user id is not valid'}
+    if user is None:
+        return resp
+
+    if request.method == "GET":
+        resp = {'playlists': user.playlists}
+    elif request.method == "POST":
+        # just created new playlist with title
+        playlist_title = request.POST['playlist_title']
+        playlist = Playlists(author_id=person_id, title=playlist_title)
+        session.add(playlist)
+        transaction.commit()
+        # redirect to edit page now
+        request.route_url('edit_user_playlist', uid=person_id, pid=playlist.id)
+    else:
+        resp = {'error': 'Method Not Allowed'}
+        status = 405
     return resp
+
+# [GET]
+@view_config(route_name='edit_user_playlist', renderer='templates/playlists/edit.pt')
+def edit_user_playlist(request):
+    playlist_id = int(request.matchdict['pid'])
+    playlist = Playlists.get_by_id(playlist_id)
+    chosen_recordings = playlist.recordings
+    chosen_ids = [rec.id for rec in chosen_recordings]
+
+    unchosen_recordings = DBSession.query(
+        Recordings,
+    ).filter(
+        Recordings.id not in chosen_ids
+    )
+
+    resp = {
+        'chosen_recordings': chosen_recordings,
+        'unchosen_recordings': unchosen_recordings
+    }
+
+
+# [GET]
+@view_config(route_name='new_user_playlist', renderer='templates/playlists/new.pt')
+def new_user_playlist(request):
+    print("---")
+    return {}
+    # does this method even need to be here?
+
+# [POST]
+@view_config(route_name='assign_to_playlist')
+def assign_to_playlist(request):
+    user_id = int(request.matchdict['uid'])
+    user = People.get_by_id(user_id)
+    if user is None:
+        return {'error': 'Invalid user id'}
+    pid = int(requets.matchdict['pid'])
+    playlist = Playlists.get_by_id(pid)
+    if playlist is None:
+        return {'error': 'Invalid playlist id'}
+    rid = int(request.POST['recording_id'])
+    recording = Recordings.get_by_id(rid)
+    if recording is None:
+        return {'error': 'Invalid recording id'}
+    DBSession.execute(recording_assignments.insert(), recording_id=rid, playlist_id=pid)
+    transaction.commit()
+# [POST]
+@view_config(route_name='remove_from_playlist')
+def remove_from_playlist(request):
+    user_id = int(request.matchdict['uid'])
+    user = People.get_by_id(user_id)
+    if user is None:
+        return {'error': 'Invalid user id'}
+    pid = int(requets.matchdict['pid'])
+    playlist = Playlists.get_by_id(pid)
+    if playlist is None:
+        return {'error': 'Invalid playlist id'}
+    rid = int(request.POST['recording_id'])
+    recording = Recordings.get_by_id(rid)
+    if recording is None:
+        return {'error': 'Invalid recording id'}
+    DBSession.execute(recording_assignments.delete(), recording_id=rid, playlist_id=pid)
+    transaction.commit()
+
+# [GET]
+@view_config(route_name'user_playlist_listening', renderer='templates/playlists/listening.pt')
+def user_playlist_listening(request):
+    return {}

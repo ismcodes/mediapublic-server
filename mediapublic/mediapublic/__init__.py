@@ -19,35 +19,35 @@ def main(global_config, **settings):
 
     # INDEX
     #config.add_route('index', '/')
-    
+
     # ABOUT
     #config.add_route('about', '/')
-    
+
     # USERS
     config.add_route('users', '/users')
     config.add_route('user_by_id', '/users/:{id}')
-    
+
     # RECORDING CATEGORIES
     config.add_route('user_types', '/user_types')
     config.add_route('user_type_by_id', '/user_types/:{id}')
-    
+
     # RECORDING CATEGORIES
     config.add_route('recording_categories', '/recording_categories')
     config.add_route('recording_category_by_id', '/recording_categories/:{id}')
-    
+
     # ORGANIZTIONS
     config.add_route('organizations', '/organizations')
     config.add_route('organization_by_id', '/organizations/:{id}')
     config.add_route('organizations_comments', 'organizations/:{oid}/comments')
     config.add_route('organizations_comment_by_id', 'organizations/:{oid}/comments/:{id}')
-    
+
     # PEOPLE
     config.add_route('people', '/people')
     config.add_route('organization_people', '/organizations/:{oid}/people')
     config.add_route('organization_people_by_id', 'organizations/:{oid}/people/:{id}')
     config.add_route('organization_people_comments', 'organizations/:{oid}/people/:{pid}/comments')
     config.add_route('organization_people_comment_by_id', 'organizations/:{oid}/people/:{pid}/comments/:{id}')
-    
+
     # RECORDINGS
     config.add_route('recordings', '/recordings')
     config.add_route('organization_recordings', '/organizations/:{oid}/recordings')
@@ -56,18 +56,22 @@ def main(global_config, **settings):
     config.add_route('organization_recordings_comment_by_id', 'organizations/:{oid}/recordings/:{rid}/comments/:{id}')
 
     # PLAYLISTS
-    config.add_route('station_playlists', '/station/{id}/playlists')
-    config.add_route('new_station_playlist', '/station/{id}/playlist/new')
-    config.add_route('station_playlist_listening', '/station/{id}/playlist/{playlistId}')
+    config.add_route('playlists', '/playlists')
+    config.add_route('user_playlists', '/users/:{uid}/playlists')
+    config.add_route('new_user_playlist', '/users/:{uid}/playlists/new')
+    config.add_route('user_playlist_listening', '/users/:{uid}/playlists/:{pid}')
+    config.add_route('edit_user_playlist', '/users/:{uid}/playlists/:{pid}/edit')
+    config.add_route('assign_to_playlist', 'users/:{uid}/playlists/:{pid}/assign')
+    config.add_route('remove_from_playlist', 'users/:{uid}/playlists/:{pid}/remove')
     # might change url format later? still not 100% sure where I'm going with this
 
-    
+
     # HOWTOS
     config.add_route('howtos', '/howtos')
     config.add_route('howtos_by_id', '/howtos/:{id}')
     config.add_route('howtos_comments', '/howtos/:{hid}/comments')
     config.add_route('howtos_comment_by_id', '/howtos/:{hid}/comments/:{id}')
-    
+
     # BLOGS
     config.add_route('blogs', '/blogs')
     config.add_route('blogs_by_id', '/blogs/:{id}')

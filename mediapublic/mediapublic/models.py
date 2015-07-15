@@ -222,7 +222,7 @@ class Comments(Base, CreationMixin):
 
 
 
-playlist_items = Table('playlist_items', Base.metadata,
+playlist_assignments = Table('playlist_items', Base.metadata,
     Column('playlist_id', Integer, ForeignKey('playlists.id')),
     Column('recording_id', Integer, ForeignKey('recordings.id'))
 )
@@ -231,11 +231,11 @@ class Playlists(Base, CreationMixin):
 
     __tablename__ = 'playlists'
     id = Column(Integer, primary_key=True)
-    name = ReqColumn(UnicodeText)
-    author = ReqColumn(UnicodeText)
-    author_email = Column(UnicodeText)
-    items = relationship("Recordings", secondary=playlist_items, backref="playlists")
+    author_id = Column(Integer, ForeignKey('people.id'))
+    title = ReqColumn(UnicodeText)
+    items = relationship("Recordings", secondary=playlist_assignments, backref="playlists")
 
+    # @classmethod
 
 class Organizations(Base, CreationMixin):
     __tablename__ = 'organizations'
@@ -296,7 +296,7 @@ class People(Base, CreationMixin):
     primary_website = ReqColumn(UnicodeText)
     secondary_website = ReqColumn(UnicodeText)
     creation_datetime = Column(DateTime)
-
+    playlists = relationship("Playlists", backref="author")
     # these should probably be brough out into a seperate table as
     # many to one so we don't have to keep adding colyumns ...
     twitter = ReqColumn(UnicodeText)

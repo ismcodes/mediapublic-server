@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="${request.locale_name}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+    <link rel="shortcut icon" href="${request.static_url('mediapublic:static/pyramid-16x16.png')}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this scaffold -->
+    <link href="${request.static_url('mediapublic:static/playlists.css')}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <ul class = "available ui-droppable">
+      <li class = "recording" data-id="${recording.id}" tal:repeat = 'recording unchosen_recordings'>
+        ${recording.title}
+      </li>
+    </ul>
+    <ul class = "chosen ui-droppable">
+      <li class= "recording" data-id="${recording.id}" tal:repeat = 'recording chosen_recordings'>
+        ${recording.title}
+      </li>
+    </ul>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//oss.maxcdn.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script>
+      PLAYLIST_ID = "${playlist_id}"
+      for(var i = 0; i < $('.available').children().length; i++){
+        $('.available').children().eq(i).attr('data-index', i);
+      }
+
+      function placeItem(e,u){
+        var obj = u.draggable;
+        //if it is available
+        var source = obj.data('source')
+        if(source==$(this).attr('class'))
+          return false;
+        assignOrRemove = obj.data('source')
+          .indexOf('available') != -1 ? 'assign' : 'remove';
+          //starts from available, moves to chosen (assigned)
+
+        $.post(
+          "../:"+PLAYLIST_ID+"/"+assignOrRemove,
+          {recording_id: obj.data('id')}
+        ).done(function(){
+          $(this).append(obj.css('top','0').css('left','0')
+          .attr('data-source',$(this).attr('class')));
+        });
+      }
+      $('li').draggable();
+      $('ul').droppable({
+        drop: placeItem
+      });
+      $('html').droppable({
+        drop: function(e,u){
+          $(u.draggable.data('source'))
+          .children().eq(u.draggable.data('index'))
+          .after(u.draggable.css('top','0').css('left','0'))
+        }
+      })
+    </script>
+    <script src="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  </body>
+</html>
