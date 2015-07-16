@@ -220,12 +220,33 @@ class Comments(Base, CreationMixin):
             ).all()
         return comments
 
+    @classmethod
+    def get_by_user_id(cls, id):
+        with transaction.manager:
+            playlists = DBSession.query(
+                Playlists,
+            ).filter(
+                Playlists.author_id == id,
+            ).all()
+        return playlists
+
+    @classmethod
+    def get_by_playlist_id_and_recording_id(cls, pid, rid):
+        with transaction.manager:
+            playlists = DBSession.query(
+                PlaylistAssignments,
+            ).filter(
+                PlaylistAssignments.playlist_id == pid,
+                PlaylistAssignment.recording_id == rid,s
+            ).all()
+        return assignments[0] # combination shoud be unique
 
 
-playlist_assignments = Table('playlist_items', Base.metadata,
-    Column('playlist_id', Integer, ForeignKey('playlists.id')),
-    Column('recording_id', Integer, ForeignKey('recordings.id'))
-)
+class PlaylistAssignments(Base, CreationMixin):
+    __tablename__ = 'playlist_assignments'
+    id = Column(Integer, primary_key=True)
+    playlist_id = Column(Integer, ForeignKey('playlists.id'))
+    recording_id = Column(Integer, ForeignKey('recordings.id'))
 
 class Playlists(Base, CreationMixin):
 
@@ -233,9 +254,7 @@ class Playlists(Base, CreationMixin):
     id = Column(Integer, primary_key=True)
     author_id = Column(Integer, ForeignKey('people.id'))
     title = ReqColumn(UnicodeText)
-    items = relationship("Recordings", secondary=playlist_assignments, backref="playlists")
-
-    # @classmethod
+    items = relationship("Recordings", secondary=PlaylistAssignments.__table__, backref="playlists")
 
 class Organizations(Base, CreationMixin):
     __tablename__ = 'organizations'

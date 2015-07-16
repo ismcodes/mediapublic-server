@@ -16,7 +16,7 @@ from .models import (
     Howtos,
     # Blogs,
     Playlists,
-    playlist_assignments,
+    PlaylistAssignments,
     )
 
 import datetime
@@ -605,37 +605,33 @@ def blogs_comment_by_id(request):
 
 
 ########### PLAYLISTS
-# I'm going to work with non-clever syntax for now and then move onto using do_post
 # [GET]
-@view_config(route_name='playlists', renderer='templates/playlists/index.pt')
+@view_config(route_name='playlists', renderer='json')
 def station_playlists(request):
-    resp = {}
+    cls = Playlists
+    resp = []
     if request.method == "GET":
-        all_playlists = Playlists.get_all() # TODO filter on station id
-        resp = {'playlists': all_playlists}
+        resp = [i.to_dict() for i in cls.get_all()]
     else:
         resp = {'error': 'Method Not Allowed'}
-        status = 405
+        request.response.status = 405
     return resp
 
 # [GET, POST]
-@view_config(route_name='user_playlists', renderer='templates/playlists/index.pt')
+@view_config(route_name='user_playlists', renderer='json')
 def user_playlists(request):
+    cls = Playlists
     person_id = int(request.matchdict['uid'])
-    user = People.get_by_id(person_id)
-    resp = {'error': 'user id is not valid'}
-    if user is None:
-        return resp
-
+    resp = []
     if request.method == "GET":
-        resp = {'playlists': user.playlists}
+        resp = [i.to_dict() for i in cls.get_by_user_id(person_id)]
     elif request.method == "POST":
-        # just created new playlist with title
-        playlist_title = request.POST['playlist_title']
-        playlist = Playlists(author_id=person_id, title=playlist_title)
-        session.add(playlist)
-        transaction.commit()
-        # redirect to edit page now
+        keys = {
+            'playlist_id': request.matchdict['pid'],
+            'recording_id': request.matchdict['rid'],
+
+        }
+        do_post(request, keys, cls)
         request.route_url('edit_user_playlist', uid=person_id, pid=playlist.id)
     else:
         resp = {'error': 'Method Not Allowed'}
@@ -643,10 +639,12 @@ def user_playlists(request):
     return resp
 
 # [GET]
-@view_config(route_name='edit_user_playlist', renderer='templates/playlists/edit.pt')
+@view_config(route_name='edit_user_playlist', renderer='json')
 def edit_user_playlist(request):
+    cls = Playlists
     playlist_id = int(request.matchdict['pid'])
     playlist = Playlists.get_by_id(playlist_id)
+    # is do_get_single even woth it here?
     chosen_recordings = playlist.recordings
     chosen_ids = [rec.id for rec in chosen_recordings]
 
@@ -663,48 +661,35 @@ def edit_user_playlist(request):
 
 
 # [GET]
-@view_config(route_name='new_user_playlist', renderer='templates/playlists/new.pt')
+@view_config(route_name='new_user_playlist', renderer='json')
 def new_user_playlist(request):
-    print("---")
-    return {}
-    # does this method even need to be here?
+    # This should just return a form for title of new playlist.
+    pass
 
 # [POST]
 @view_config(route_name='assign_to_playlist')
 def assign_to_playlist(request):
-    user_id = int(request.matchdict['uid'])
-    user = People.get_by_id(user_id)
-    if user is None:
-        return {'error': 'Invalid user id'}
-    pid = int(requets.matchdict['pid'])
-    playlist = Playlists.get_by_id(pid)
-    if playlist is None:
-        return {'error': 'Invalid playlist id'}
-    rid = int(request.POST['recording_id'])
-    recording = Recordings.get_by_id(rid)
-    if recording is None:
-        return {'error': 'Invalid recording id'}
-    DBSession.execute(recording_assignments.insert(), recording_id=rid, playlist_id=pid)
-    transaction.commit()
+    cls = PlaylistAssignments
+    keys = {
+        'playlist_id': request.matchdict['pid'],
+        'recording_id': request.matchdict['rid'],
+    }
+    do_post(request, keys, cls)
+
 # [POST]
 @view_config(route_name='remove_from_playlist')
 def remove_from_playlist(request):
-    user_id = int(request.matchdict['uid'])
-    user = People.get_by_id(user_id)
-    if user is None:
-        return {'error': 'Invalid user id'}
-    pid = int(requets.matchdict['pid'])
-    playlist = Playlists.get_by_id(pid)
-    if playlist is None:
-        return {'error': 'Invalid playlist id'}
-    rid = int(request.POST['recording_id'])
-    recording = Recordings.get_by_id(rid)
-    if recording is None:
-        return {'error': 'Invalid recording id'}
-    DBSession.execute(recording_assignments.delete(), recording_id=rid, playlist_id=pid)
-    transaction.commit()
+    cls = PlaylistAssignments
+    pa_id =
+        PlaylistAssignments.get_by_playlist_id_and_recording_id(
+            cls, request.matchdict['pid'], request.matchdict['rid']
+        ).id
+    do_delete(request, pa_id, cls)
+
+
 
 # [GET]
-@view_config(route_name'user_playlist_listening', renderer='templates/playlists/listening.pt')
+@view_config(route_name='user_playlist_listening', renderer='json')
 def user_playlist_listening(request):
-    return {}
+    cls = Playlists
+    return METHODS['GET'](request, request.matchdict['pid'], cls)
